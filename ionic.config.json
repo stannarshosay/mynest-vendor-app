@@ -1,0 +1,7 @@
+{
+  "name": "mynest-vendor",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
