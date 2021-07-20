@@ -1,0 +1,41 @@
+<app-header title="Advertise"></app-header>
+<ion-content class="ion-padding">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-spinner name="crescent" color="primary" class="ml-auto mr-auto mt-2 d-block" *ngIf="isLoadingCategoriesAndLocations"></ion-spinner>
+
+    <form class="sl-form sl-manageServices" [formGroup]="slotsForm" *ngIf="!isLoadingCategoriesAndLocations">
+        <div class="sl-form__wrap">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="categoryId" (selectionChange)="loadSlots()">
+                    <mat-option value="{{category.categoryId}}" *ngFor="let category of categories">{{category.categoryName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Location</mat-label>
+                <mat-select formControlName="district" (selectionChange)="loadSlots()">
+                    <mat-option value="{{location.district}}" *ngFor="let location of locations">{{location.district}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="sl-dashboardbox">
+            <ion-spinner name="crescent" color="primary" class="ml-auto mr-auto mt-2 d-block" *ngIf="isLoadingSlots"></ion-spinner>
+            <div class="slot-container" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                <div class="date-slot" fxFlex="33" *ngFor="let slot of slots">
+                    <input type="checkbox" id="{{slot.slotId}}" [disabled]="slot.slotStatus != 'AVAILABLE'" (change)="toggleSlot($event,slot)">
+                    <label fxFlex [class.booked]="slot.slotStatus != 'AVAILABLE'" for="{{slot.slotId}}">
+                            <span class="label-slot">{{getBeautifiedDate(slot.startingDate)}} to {{getBeautifiedDate(slot.endingDate)}}</span>
+                            <span class="label-price">&#8377;&nbsp;{{slot.price}}</span>
+                        </label>
+                </div>
+            </div>
+        </div>
+        <h4 *ngIf="totalAmount !=0">Total <strong>&#8377;&nbsp;{{totalAmount}}</strong></h4>
+        <div class="d-inline-block" matRipple [matRippleColor]="color" *ngIf="totalAmount !=0">
+            <button class="btn sl-btn sl-btn-outline fixed-width" [disabled]="isBooking" (click)="bookSlots()">Book</button>
+        </div>
+    </form>
+</ion-content>

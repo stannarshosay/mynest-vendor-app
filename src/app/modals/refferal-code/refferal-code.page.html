@@ -1,0 +1,27 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar fxLayout="row" fxLayoutAlign="start center">
+        <ion-buttons slot="start">
+            <ion-button size="small" fill="clear" shape="round" (click)="dismiss(false,null)">
+                <ion-icon color="danger" slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>{{title}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <div class="form-group">
+        <input class="form-control sl-form-control" [formControl]="code" type="text" placeholder="Refferal Code*">
+    </div>
+    <ion-spinner name="crescent" color="primary" class="ml-auto mr-auto mt-2 d-block" *ngIf="isProcessing"></ion-spinner>
+</ion-content>
+<ion-footer class="ion-no-border">
+    <ion-toolbar class="ion-padding">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div matRipple [matRippleColor]="color">
+                <button mat-button (click)="addAgent()" *ngIf="!isProcessing" class="btn sl-btn sl-btn-outline fixed-width">Add</button>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-footer>

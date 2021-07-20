@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar fxLayout="row" fxLayoutAlign="start center">
+        <ion-title class="pl-3">Select Package</ion-title>
+        <ion-button (click)="logout()" slot="end" fill="clear" shape="round">
+            <ion-icon slot="icon-only" name="log-out"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <div class="sl-packagePlan">
+        <div class="row">
+            <ion-spinner name="crescent" color="primary" class="ml-auto mr-auto mt-2 d-block" [hidden]="showSpinner"></ion-spinner>
+            <div class="col-md-6 col-xl-4" *ngFor="let package of packages;let i = index" [hidden]="!package.active">
+                <div class="sl-package" [class.margin-top-low]="i==0">
+                    <div class="sl-package__title">
+                        <img src="assets/images/index/packages/{{package.membershipName}}.png" alt="Image Description">
+                        <h3>{{package.membershipName}} Package</h3>
+                        <em>{{package.duration}} Days</em>
+                    </div>
+                    <div class="sl-package__deal sl-bg-blue">
+                        <p><s>&#8377;{{package.price}}</s></p>
+                        <div class="sl-package__price">
+                            <h3><sup>&#8377;</sup>{{package.sellingPrice}}</h3>
+                            <p>\ Month</p>
+                        </div>
+                        <em>Includes all taxes*</em>
+                    </div>
+                    <div class="sl-package__footer">
+                        <ul class="sl-package__details">
+                            <li *ngFor="let benefit of package.benefits.split(',')">
+                                <p>{{benefit}}</p>
+                                <p class="sl-green"><i class="ti-check"></i></p>
+                            </li>
+                        </ul>
+                        <div matRipple [matRippleColor]="color">
+                            <a href="javascript:void(0)" (click)="choosePackage(package)" [class.disabled]="(!package.active)||isProccessing" class="btn sl-btn sl-btn-outline">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,77 @@
+<app-header title="Requirements"></app-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <main class="sl-main p-0">
+        <!-- SERVICE PROVIDER START -->
+        <section class="sl-main-section p-0">
+            <div *ngIf="!isGettingRequirements">
+                <div *ngIf="!isGettingRequirementsSuccess" class="mn-no-results" fxLayout="column" fxLayoutAlign="center center">
+                    <img src="assets/images/vendor/no-results.png">
+                    <p>No requirements.</p>
+                </div>
+                <mat-accordion *ngIf="!isGettingRequirements">
+                    <mat-expansion-panel *ngFor="let requirement of requirements | paginate:config" class="req-expansion-panel">
+                        <mat-expansion-panel-header>
+                            <div class="sl-newAppointments__userDetail">
+                                <div class="sl-newAppointments__userText">
+                                    <h5>{{requirement.categoryId}}</h5>
+                                    <div *ngIf="requirement.subCategoryName" class="element-subcategory"><small>{{requirement.subCategoryName}}</small></div>
+                                    <p>{{requirement.createdDate}}</p>
+                                </div>
+                            </div>
+                            <div matRipple [matRippleColor]="color" class="pt-2 pb-2">
+                                <a href="javascript:void(0);" (click)="sendQuote(requirement.requirementId,$event)" class="btn sl-btn sl-btn-outline">Send quote</a>
+                            </div>
+                        </mat-expansion-panel-header>
+                        <div class="requirement-content" fxLayout="row" fxLayoutAlign="start">
+                            <img fxFlex="50" *ngIf="(requirement.picName)&&(requirement.picName.trim()!='')" src="https://mynestonline.com/collection/images/requirements/{{requirement.picName}}">
+                            <div class="p-3" [attr.fxFlex]="((requirement.picName)&&(requirement.picName.trim()!=''))?50:100">
+                                <div class="requirement-contact" fxLayout="row" fxLayoutAlign="center center" *ngIf="(requirement.contact)&&(requirement.contact!='')">
+                                    <mat-icon>phone</mat-icon>
+                                    <span class="ml-1">{{requirement.contact}}</span>
+                                </div>
+                                <p>&ldquo;{{requirement.description}}&rdquo;</p>
+                            </div>
+                        </div>
+                        <mat-action-row>
+                            <div matRipple [matRippleColor]="color">
+                                <a href="javascript:void(0);" (click)="reportRequirement(requirement.requirementId)" class="btn sl-btn sl-btn-danger">Report</a>
+                            </div>
+                        </mat-action-row>
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+                <div class="row">
+                    <div class="col-12">
+                        <pagination-controls (pageChange)="pageChange($event)" autoHide="true" responsive="true" previousLabel="" nextLabel=""></pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isGettingRequirements" class="ion-padding">
+                <div class="news-skeleton">
+                    <ion-skeleton-text animated style="width: 100%" class="image-skeleton"></ion-skeleton-text>
+                    <ion-skeleton-text animated style="width: 30%;"></ion-skeleton-text>
+                    <ion-skeleton-text animated style="width: 25%;"></ion-skeleton-text>
+                </div>
+                <div class="news-skeleton">
+                    <ion-skeleton-text animated style="width: 100%" class="image-skeleton"></ion-skeleton-text>
+                    <ion-skeleton-text animated style="width: 30%;"></ion-skeleton-text>
+                    <ion-skeleton-text animated style="width: 25%;"></ion-skeleton-text>
+                </div>
+                <div class="news-skeleton">
+                    <ion-skeleton-text animated style="width: 100%" class="image-skeleton"></ion-skeleton-text>
+                    <ion-skeleton-text animated style="width: 30%;"></ion-skeleton-text>
+                    <ion-skeleton-text animated style="width: 25%;"></ion-skeleton-text>
+                </div>
+                <div class="news-skeleton">
+                    <ion-skeleton-text animated style="width: 100%" class="image-skeleton"></ion-skeleton-text>
+                    <ion-skeleton-text animated style="width: 30%;"></ion-skeleton-text>
+                    <ion-skeleton-text animated style="width: 25%;"></ion-skeleton-text>
+                </div>
+            </div>
+        </section>
+    </main>
+</ion-content>

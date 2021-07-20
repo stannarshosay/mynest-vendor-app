@@ -1,0 +1,29 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar fxLayout="row" fxLayoutAlign="start center">
+        <ion-buttons slot="start">
+            <ion-button size="small" fill="clear" shape="round" (click)="dismiss(false)">
+                <ion-icon color="danger" slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>Verify {{email}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+    <div class="form-group" *ngIf="!isProcessing">
+        <ng-otp-input fxLayout="row" fxLayoutAlign="center center" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+        <p *ngIf="isCounting" class="text-center mt-2">Resend OTP in {{counter | formatTime}}</p>
+        <p *ngIf="!isCounting" class="text-center"><a href="javascript:void(0)" (click)="sendOTP()">Resend</a></p>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <ion-spinner name="crescent" color="primary" class="ml-auto mr-auto mt-2" *ngIf="isProcessing"></ion-spinner>
+        <div class="ml-2" matRipple [matRippleColor]="color" *ngIf="!isProcessing">
+            <button (click)="verifyOTP()" class="btn sl-btn sl-btn-outline">Verify</button>
+        </div>
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+    <ion-toolbar class="ion-padding">
+        <small class="text-muted text-center d-block">{{info}}</small>
+    </ion-toolbar>
+</ion-footer>

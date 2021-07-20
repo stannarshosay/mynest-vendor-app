@@ -1,0 +1,39 @@
+.mat-expansion-panel {
+    margin: 10px!important;
+    border-radius: 6px!important;
+}
+
+.mat-expansion-panel-header {
+    height: auto!important;
+    padding: 0px 10px;
+}
+
+.mat-content {
+    min-height: 100px!important;
+    padding: 10px!important;
+    align-items: center!important;
+}
+
+.news-skeleton>ion-skeleton-text {
+    margin-bottom: 5px;
+}
+
+.news-skeleton {
+    margin-bottom: 15px;
+}
+
+.image-skeleton {
+    height: 150px;
+    margin-bottom: 5px!important;
+    border-radius: 6px;
+}
+
+.element-subcategory {
+    padding: 0px 8px;
+    display: inline-block;
+    background-color: darkgray;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    font-size: 12px;
+}

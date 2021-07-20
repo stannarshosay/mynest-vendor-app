@@ -1,0 +1,30 @@
+.mat-expansion-panel {
+    margin: 10px!important;
+    border-radius: 6px!important;
+}
+
+.mat-expansion-panel-header {
+    height: auto!important;
+    padding: 0px 10px;
+    padding-top: 5px;
+}
+
+.mat-content {
+    min-height: 100px!important;
+    padding: 10px!important;
+    align-items: center!important;
+}
+
+.news-skeleton>ion-skeleton-text {
+    margin-bottom: 5px;
+}
+
+.news-skeleton {
+    margin-bottom: 15px;
+}
+
+.image-skeleton {
+    height: 150px;
+    margin-bottom: 5px!important;
+    border-radius: 6px;
+}

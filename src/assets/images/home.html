@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <ion-icon class="noti" ios="ios-notifications" md="md-notifications"></ion-icon>
+    </ion-buttons>
+  </ion-navbar>
+  
+</ion-header>
+
+<ion-content padding>
+  <ion-title class="heading">Dashboard</ion-title>
+  <ion-grid>
+  <ion-row>
+    <ion-col col-6 >
+      <ion-card class="box1">
+        <img class="wishlist" src="assets/imgs/wish.png">
+        <div class="cnt"><p class="ft-ct">{{wishListCount}}</p></div>
+        <div>
+          <p class="lt-cl boxes">Wishlist</p>
+        </div>        
+      </ion-card>
+    </ion-col>
+    <ion-col col-6 >
+      <ion-card class="box2">
+        <img class="wishlist" src="assets/imgs/mail.png">
+        <div class="cnt mail-msg-cnt"><p class="ft-ct">24</p>Unread</div>
+        <div>
+          <p class="lt-cl boxes">New Messages</p>
+        </div>        
+      </ion-card>
+    </ion-col>
+    <ion-col col-6 >
+      <ion-card class="box3">
+        <img class="wishlist" src="assets/imgs/crown.png">
+        <div class="cnt prof-visit-cnt"><p class="ft-ct bx-3">706</p></div>
+        <div>
+          <p class="lt-cl boxes">Profile vists</p>
+        </div>        
+      </ion-card>
+    </ion-col>
+    <ion-col col-6 >
+      <ion-card class="box4">
+        <img class="wishlist" src="assets/imgs/calendar.png">
+        <div class="cnt mail-msg-cnt2"><p class="ft-dys">16</p>Days Left</div>
+        <div>
+          <p class="lt-cl boxes-last">Package Expiry</p>
+        </div>        
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+  <ion-row>
+    <ion-col col-8 >
+      <ion-card-header>
+      <h1>Requirements</h1>  
+      </ion-card-header>
+      <p *ngIf="msg">{{msg}}</p>
+    </ion-col>
+    <ion-col col-4 >
+      <ion-card-header>
+        <p class="view-all"> View All</p>
+      </ion-card-header>
+    </ion-col>
+  </ion-row>
+  <ion-card class="chatl" *ngFor="let item of myrequirementdata;let i = index">  
+    <ion-card-content>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/chat.png">
+        </ion-avatar>
+      </ion-item>
+      <ion-card-title>{{item.createdDate}}</ion-card-title>
+        <p class="loc">{{item.locations}}</p>
+        <p class="msg">{{item.description}}</p>
+    </ion-card-content>
+   
+  </ion-card>
+ 
+  
+  <ion-card class="rene-bx">  
+    <ion-card-content >     
+      <ion-row>
+        <ion-col col-8>
+        <p class="textoffr1">Your Premimun Package</p>
+        <p class="textoffr2">Expires in 15days</p>
+      </ion-col>
+      <ion-col col-4>
+        <button class="renew-btn" ion-button>Renew Now</button>
+      </ion-col>
+    </ion-row>
+    </ion-card-content>    
+  </ion-card>
+ 
+</ion-content>

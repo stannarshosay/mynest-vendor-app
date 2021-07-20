@@ -1,0 +1,97 @@
+.box {
+    border-radius: 19px;
+    margin-top: 20px;
+    height: auto;
+    padding: 10px;
+    h5 {
+        margin-top: 0px;
+    }
+}
+
+.box img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.box h5,
+.box p {
+    color: white;
+}
+
+.box.wishlist-bg {
+    background-color: #fab832;
+    box-shadow: 0px 5px 10px #ffc248;
+}
+
+.box.package-bg {
+    background-color: #5158dd;
+    box-shadow: 0px 5px 10px #666bd3;
+}
+
+.box.message-bg {
+    background-color: #fc6441;
+    box-shadow: 0px 5px 10px #f87a5e;
+}
+
+.requirement-header {
+    margin: 25px 0px;
+}
+
+.mat-expansion-panel {
+    margin: 10px 0px!important;
+    border-radius: 6px!important;
+}
+
+.mat-expansion-panel-header {
+    height: auto!important;
+    padding: 0px 10px;
+}
+
+.mat-content {
+    min-height: 100px!important;
+    padding: 10px!important;
+    align-items: center!important;
+}
+
+.news-skeleton>ion-skeleton-text {
+    margin-bottom: 5px;
+}
+
+.news-skeleton {
+    margin-bottom: 15px;
+}
+
+.image-skeleton {
+    height: 100px;
+    margin-bottom: 5px!important;
+    border-radius: 6px;
+}
+
+.announcement-skeleton>ion-skeleton-text.image {
+    border-radius: 50%;
+    height: 55px;
+    width: 65px;
+    margin-right: 7px;
+}
+
+.announcement-skeleton>ion-skeleton-text.announcement-box {
+    border-radius: 6px;
+    height: 40px;
+}
+
+.renew-btn {
+    color: #4e73e9;
+    background-color: #fff;
+    margin-top: 10px;
+    margin-right: 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: capitalize!important;
+}
+
+.renewal-box {
+    margin-top: 30px;
+    background: linear-gradient(to right, #ffca57 30%, #ecb042 24%, #f7c75d 13%, #ffce63 26%, #e6c45d 41%, #ab770d 100%);
+    padding: 5px;
+}

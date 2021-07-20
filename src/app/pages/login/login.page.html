@@ -1,0 +1,50 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title class="ion-text-center">Login</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <div class="sl-registersignarea">
+        <img src="assets/images/main-logo.png" class="logo">
+        <div class="tab-pane fade show active" id="signupprovider" role="tabpanel" aria-labelledby="sl-signupprovider">
+            <form class="sl-formtheme sl-signupform" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <fieldset>
+                    <div class="sl-signupform-wrap">
+                        <div class="form-group">
+                            <input type="text" formControlName="username" name="name" value="" class="form-control sl-form-control" placeholder="Username*" required="">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" formControlName="password" name="password" value="" class="form-control sl-form-control" placeholder="Password*">
+                        </div>
+                        <div class="form-group sl-btnarea">
+                            <ion-spinner name="crescent" color="primary" class="ml-auto mr-auto mt-2" [hidden]="!showSpinner"></ion-spinner>
+                            <div matRipple [matRippleColor]="color">
+                                <button type="submit" class="btn sl-btn sl-btn-outline" [hidden]="showSpinner">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="sl-oroption">
+            <span>or</span>
+        </div>
+        <div class="sl-loginicon">
+            <ul>
+                <li matRipple [matRippleColor]="color"><a href="javascript:void(0);" (click)="loginWithOtp()" class="sl-otpbox"><i class="fas fa-mobile-alt"></i>via mobile otp</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="sl-popup-footerterms">
+        <span>By signing in  you agree to these <a href="legalprivacy.html"> Terms &amp; Conditions</a> &amp; consent to<a href="legalprivacy.html"> Cookie Policy &amp; Privacy Policy.</a></span>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <div class="sl-loginfooterinfo" fxLayout="row nowrap" fxLayoutAlign="space-around center">
+            <a href="javascript:void(0);" fxFlex="50" routerLink="/signup" routerDirection="forward"><em>Not a member?</em> Signup</a>
+            <a href="javascript:void(0);" fxFlex="50" class="sl-forgot-password" (click)="forgotPassword()">Forgot password?</a>
+        </div>
+    </ion-toolbar>
+</ion-footer>

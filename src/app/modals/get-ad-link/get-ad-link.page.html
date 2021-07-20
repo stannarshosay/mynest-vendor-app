@@ -1,0 +1,27 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar fxLayout="row" fxLayoutAlign="start center">
+        <ion-buttons slot="start">
+            <ion-button size="small" fill="clear" shape="round" (click)="dismiss(null)">
+                <ion-icon color="danger" slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+    <h3 class="mb-3">Do you want to add a redirect link for your ad?</h3>
+    <div class="form-group">
+        <input class="form-control sl-form-control" [formControl]="link" type="text" placeholder="Ad redirect link">
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+    <ion-toolbar class="ion-padding">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div matRipple [matRippleColor]="color">
+                <button class="btn sl-btn sl-btn-active fixed-width" (click)="dismiss(null)">No</button>
+            </div>
+            <div matRipple [matRippleColor]="color">
+                <button class="btn sl-btn sl-btn-outline fixed-width" (click)="getLink()">Yes</button>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-footer>

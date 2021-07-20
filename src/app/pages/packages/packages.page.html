@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar fxLayout="row" fxLayoutAlign="start center">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Packages</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="sl-buyPackage">
+        <div class="sl-buyPackage__count sl-busy-before">
+            <div class="sl-buyPackage__count--content">
+                <div class="sl-buyPackage__count--title">
+                    <h4><span *ngIf="vendorDetails">{{vendorDetails.currentMembership}}</span> Package</h4>
+                    <h6>Will Expire in:</h6>
+                </div>
+                <ul id="sl-packagecounter" class="sl-packagecounter sl-buyPackage__count--down"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="sl-packagePlan vdashboard ion-padding">
+        <div class="row">
+            <ion-spinner name="crescent" color="primary" class="ml-auto mr-auto mt-2" *ngIf="showSpinner"></ion-spinner>
+            <div class="col-md-6 col-xl-4" *ngFor="let package of packages" [hidden]="!package.active">
+                <div class="sl-package">
+                    <div class="sl-package__title">
+                        <img src="assets/images/index/packages/{{package.membershipName}}.png" alt="Image Description">
+                        <h5>{{package.membershipName}} Package</h5>
+                        <em>{{package.duration}} Days</em>
+                        <div class="sl-tag" *ngIf="package.membershipName == vendorDetails.currentMembership">
+                            <h6>Subscribed</h6>
+                        </div>
+                    </div>
+                    <div class="sl-package__deal sl-bg-blue">
+                        <p><s>&#8377;{{package.price}}</s></p>
+                        <div class="sl-package__price">
+                            <h3><sup>&#8377;</sup>{{package.sellingPrice}}</h3>
+                            <p>\ Month</p>
+                        </div>
+                        <em>Includes all taxes*</em>
+                    </div>
+                    <div class="sl-package__footer">
+                        <ul class="sl-package__details">
+                            <li *ngFor="let benefit of package.benefits.split(',')">
+                                <p>{{benefit}}</p>
+                                <p class="sl-green"><i class="ti-check"></i></p>
+                            </li>
+                        </ul>
+                        <div matRipple [matRippleColor]="color" [matTooltip]="package.membershipName == vendorDetails.currentMembership?'already subscribed': package.active?(package.sellingPrice == '0')?'free plan':'buy package':'inactive plan'">
+                            <a href="javascript:void(0)" (click)="choosePackage(package)" [class.disabled]="(!package.active)||(package.membershipName == vendorDetails.currentMembership)||isProcessing||(package.sellingPrice == '0')" class="btn sl-btn sl-btn-outline">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
