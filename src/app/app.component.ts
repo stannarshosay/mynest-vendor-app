@@ -5,6 +5,7 @@ import { RegisterLoginService } from './services/register-login.service';
 import { LocalNotificationSchedule, Plugins } from '@capacitor/core';
 import { IonRouterOutlet, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FcmService } from './services/fcm.service';
 const { App,SplashScreen,Toast,BackgroundTask,LocalNotifications } = Plugins;
 
 @Component({
@@ -21,7 +22,8 @@ export class AppComponent {
     private chatService:ChatroomService,
     public platform:Platform,
     private registerLoginService:RegisterLoginService,
-    private router:Router
+    private router:Router,
+    private fcmService:FcmService
   ) { }
 
   ngOnInit(): void {   
@@ -34,6 +36,7 @@ export class AppComponent {
           this.isLoggedIn = res;
           if(res){
             this.chatService.connectAndSubscribeToWebsocket();
+            this.fcmService.initPush();
           }else{
             this.chatService.disconnectFromWebsocket();
           }

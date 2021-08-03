@@ -3,6 +3,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MenuController, NavController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { ChatroomService } from '../services/chatroom.service';
+import { FcmService } from '../services/fcm.service';
 import { RegisterLoginService } from '../services/register-login.service';
 
 @Component({
@@ -29,7 +30,8 @@ export class HomePage {
     private snackBar:MatSnackBar,
     private registerLoginService:RegisterLoginService,
     private menu:MenuController,
-    private navController:NavController
+    private navController:NavController,
+    private fcmService:FcmService
   ) {}
   
   ngOnInit():void{
@@ -127,6 +129,7 @@ export class HomePage {
     this.menu.close("sidebar-menu");
   }
   logout(){ 
+    this.fcmService.removeTokenOnLogout(localStorage.getItem("vid"));
     localStorage.setItem("vid","");
     localStorage.setItem("vname","");
     localStorage.setItem("vstatus","");

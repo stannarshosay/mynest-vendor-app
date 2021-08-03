@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "426416528522",
+    "project_id": "mynestvendorapp",
+    "storage_bucket": "mynestvendorapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426416528522:android:7c2af5cc5b5371ee0da173",
+        "android_client_info": {
+          "package_name": "ionic.mynest.vendor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426416528522-mgp8q5dh266rjmkrabsg1206oo6hv7g0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAKMPukwoqdSalPq3HddT6KFY0EJoVoLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426416528522-mgp8q5dh266rjmkrabsg1206oo6hv7g0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
