@@ -10,13 +10,13 @@
         <div class="sl-form__wrap">
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Category</mat-label>
-                <mat-select formControlName="categoryId" (selectionChange)="loadSlots()">
+                <mat-select formControlName="categoryId" (selectionChange)="loadSlots()" #categorySelect>
                     <mat-option value="{{category.categoryId}}" *ngFor="let category of categories">{{category.categoryName}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Location</mat-label>
-                <mat-select formControlName="district" (selectionChange)="loadSlots()">
+                <mat-select formControlName="district" (selectionChange)="loadSlots()" #locationSelect>
                     <mat-option value="{{location.district}}" *ngFor="let location of locations">{{location.district}}</mat-option>
                 </mat-select>
             </mat-form-field>

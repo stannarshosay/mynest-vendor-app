@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { AdvertisementService } from 'src/app/services/advertisement.service';
@@ -7,12 +7,17 @@ import  'capacitor-razorpay';
 import { Plugins } from '@capacitor/core';
 const { Checkout } = Plugins;
 import moment from 'moment';
+import { MatSelect } from '@angular/material/select';
+import { Platform } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-advertise',
   templateUrl: './advertise.page.html',
   styleUrls: ['./advertise.page.scss'],
 })
 export class AdvertisePage implements OnInit {
+  @ViewChild('categorySelect') private categorySelect:MatSelect;
+  @ViewChild('locationSelect') private locationSelect:MatSelect;
   totalAmount:number = 0;
   isLoadingSlots:boolean = false;
   isBooking:boolean = false;
@@ -24,11 +29,13 @@ export class AdvertisePage implements OnInit {
   selectedSlots:any[] = [];
   options:any = {};
   slotsForm: FormGroup;
+  backButtonSubscription:Subscription;
   constructor(
     private registerLoginService:RegisterLoginService,
     private adService:AdvertisementService,
     private snackBar:MatSnackBar,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    public platform:Platform
   ) { }
 
   ngOnInit(): void {
@@ -55,6 +62,19 @@ export class AdvertisePage implements OnInit {
   }
   ionViewWillEnter(){
     this.getCategoryAndLocations();
+  }
+  ionViewDidEnter(){
+    this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+      if(this.categorySelect.panelOpen||this.locationSelect.panelOpen){
+        this.categorySelect.close();
+        this.locationSelect.close();
+      }else{
+        processNextHandler();
+      }
+    });
+  }
+  ionViewWillLeave(){
+    this.backButtonSubscription.unsubscribe();
   }
   getCategoryAndLocations(){
     this.isLoadingCategoriesAndLocations = true;

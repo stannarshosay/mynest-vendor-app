@@ -5,6 +5,7 @@ import { ModalController, NavController } from '@ionic/angular';
 import { ForgotPasswordPage } from 'src/app/modals/forgot-password/forgot-password.page';
 import { LoginOtpPage } from 'src/app/modals/login-otp/login-otp.page';
 import { ChatroomService } from 'src/app/services/chatroom.service';
+import { FcmService } from 'src/app/services/fcm.service';
 import { RegisterLoginService } from 'src/app/services/register-login.service';
 
 @Component({
@@ -27,7 +28,8 @@ export class LoginPage implements OnInit {
     private fb:FormBuilder,
     private modalController:ModalController,
     private snackBar:MatSnackBar,
-    private navController:NavController
+    private navController:NavController,
+    private fcmService:FcmService
   ) { }
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class LoginPage implements OnInit {
           localStorage.setItem("vid",res["data"]["id"]);
           localStorage.setItem("vname",res["data"]["username"]);
           this.registerLoginService.hasLoggedIn.next(true);
+          this.fcmService.initPush();
           this.chatService.hasRecievedMessage.next("no");
           this.chatService.hasRecievedNotification.next("no");
           this.setVendorStatusAndRedirect(res["message"]);
@@ -102,6 +105,7 @@ export class LoginPage implements OnInit {
           localStorage.setItem("vid",loginData["id"]);
           localStorage.setItem("vname",loginData["username"]);
           this.registerLoginService.hasLoggedIn.next(true);
+          this.fcmService.initPush();
           this.chatService.hasRecievedMessage.next("no");
           this.chatService.hasRecievedNotification.next("no");
           this.setVendorStatusAndRedirect("Otp Login Successfull!");         

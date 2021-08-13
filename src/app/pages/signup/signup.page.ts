@@ -5,6 +5,7 @@ import { ModalController, NavController } from '@ionic/angular';
 import { VerifyEmailPage } from 'src/app/modals/verify-email/verify-email.page';
 import { VerifyMobilePage } from 'src/app/modals/verify-mobile/verify-mobile.page';
 import { ChatroomService } from 'src/app/services/chatroom.service';
+import { FcmService } from 'src/app/services/fcm.service';
 import { RegisterLoginService } from 'src/app/services/register-login.service';
 
 @Component({
@@ -36,7 +37,8 @@ export class SignupPage implements OnInit {
     private fb:FormBuilder,
     private snackBar:MatSnackBar,
     private navController:NavController,
-    private modalController:ModalController
+    private modalController:ModalController,
+    private fcmService:FcmService
   ) {
 
    }
@@ -122,7 +124,8 @@ export class SignupPage implements OnInit {
        if(res["success"]){
          localStorage.setItem("vid",res["data"]["id"]);
          localStorage.setItem("vname",res["data"]["username"]);
-         this.registerLoginService.hasLoggedIn.next(true);         
+         this.registerLoginService.hasLoggedIn.next(true); 
+         this.fcmService.initPush();        
          this.chatService.hasRecievedMessage.next("no");
          this.chatService.hasRecievedNotification.next("no");
          this.setVendorStatusAndRedirect();

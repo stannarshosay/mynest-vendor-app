@@ -54,8 +54,13 @@ export class FcmService {
       // this.showAlert("recieved => "+JSON.stringify(notification));
     });
     PushNotifications.addListener("pushNotificationActionPerformed",async (notification:PushNotificationActionPerformed)=>{
+      // PushNotifications.removeAllDeliveredNotifications();
       // this.showAlert("action performed => "+JSON.stringify(notification.notification.data));
-      this.router.navigateByUrl("/home/tabs/notifications");
+      if(notification.notification.data.notificationType == "message"){
+        this.router.navigateByUrl("/home/tabs/chatroom");
+      }else{       
+        this.router.navigateByUrl("/home/tabs/notifications");
+      }    
     });
   }
   async showAlert(data:any) {
@@ -90,7 +95,7 @@ export class FcmService {
     let param = {};
     param["userId"]=customerId;
     param["deviceId"] = deviceId;
-    return this.http.delete("https://mynestonline.com/collection/api/mobile/token/delete",param);
+    return this.http.post("https://mynestonline.com/collection/api/mobile/token/delete",param);
   }
   addMobileToken(customerId:string,deviceId:string,token:string){
     let param = {};

@@ -36,7 +36,6 @@ export class AppComponent {
           this.isLoggedIn = res;
           if(res){
             this.chatService.connectAndSubscribeToWebsocket();
-            this.fcmService.initPush();
           }else{
             this.chatService.disconnectFromWebsocket();
           }
