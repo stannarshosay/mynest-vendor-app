@@ -3,9 +3,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { RegisterLoginService } from 'src/app/services/register-login.service';
 import { VendorService } from 'src/app/services/vendor.service';
 declare var jQuery: any;
-import  'capacitor-razorpay';
-import { Plugins } from '@capacitor/core';
-const { Checkout } = Plugins;
+import { Checkout } from 'capacitor-razorpay';
 @Component({
   selector: 'app-packages',
   templateUrl: './packages.page.html',

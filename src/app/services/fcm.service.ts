@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Dialog } from '@capacitor/dialog';
+import { Device } from '@capacitor/device';
 import {
-  Plugins,
-  PushNotification,
-  PushNotificationToken,
-  PushNotificationActionPerformed,
-  Capacitor
-} from '@capacitor/core';
-const {PushNotifications,Modals,Device} = Plugins;
+  ActionPerformed,
+  PushNotificationSchema,
+  PushNotifications,
+  Token,
+} from '@capacitor/push-notifications';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,23 +20,20 @@ export class FcmService {
 
   public initPush(){
     this.registerPushNotification();
-    // if(Capacitor.platform !== "web"){
-    //   this.registerPushNotification();
-    // }   
   }
   async getDeviceId(){
-    const info = await Device.getInfo();
+    const info = await Device.getId();
     return info;
   }
   private registerPushNotification(){
-    PushNotifications.requestPermission().then((permission)=>{
-      if(permission.granted){
+    PushNotifications.requestPermissions().then((permission)=>{
+      if(permission.receive === 'granted'){
         PushNotifications.register();
       }else{
         this.showAlert("No push notification permisson granted");
       }
     });  
-    PushNotifications.addListener("registration",(token:PushNotificationToken)=>{
+    PushNotifications.addListener("registration",(token:Token)=>{
       // this.showAlert("token => "+JSON.stringify(token));
       //add to table;
       if(localStorage.getItem("mnvFcmToken")){
@@ -50,10 +47,10 @@ export class FcmService {
     PushNotifications.addListener("registrationError",(error:any)=>{
       // this.showAlert("register error => "+JSON.stringify(error));
     });
-    PushNotifications.addListener("pushNotificationReceived",async (notification:PushNotification)=>{
+    PushNotifications.addListener("pushNotificationReceived",async (notification:PushNotificationSchema)=>{
       // this.showAlert("recieved => "+JSON.stringify(notification));
     });
-    PushNotifications.addListener("pushNotificationActionPerformed",async (notification:PushNotificationActionPerformed)=>{
+    PushNotifications.addListener("pushNotificationActionPerformed",async (notification:ActionPerformed)=>{
       // PushNotifications.removeAllDeliveredNotifications();
       // this.showAlert("action performed => "+JSON.stringify(notification.notification.data));
       if(notification.notification.data.notificationType == "message"){
@@ -64,7 +61,7 @@ export class FcmService {
     });
   }
   async showAlert(data:any) {
-    let alertRet = await Modals.alert({
+    let alertRet = await Dialog.alert({
       title: 'Mynest',
       message: data
     });

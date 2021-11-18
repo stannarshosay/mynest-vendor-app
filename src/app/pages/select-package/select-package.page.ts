@@ -2,9 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { NavController } from '@ionic/angular';
 import { RegisterLoginService } from 'src/app/services/register-login.service';
-import  'capacitor-razorpay';
-import { Plugins } from '@capacitor/core';
-const { Checkout } = Plugins;
+import { Checkout } from 'capacitor-razorpay';
 @Component({
   selector: 'app-select-package',
   templateUrl: './select-package.page.html',
