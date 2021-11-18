@@ -138,3 +138,10 @@
     align-items: flex-end;
     --backdrop-opacity: var(--ion-backdrop-opacity, 0.4);
 }
+
+img.announcement-img {
+    width: 55px;
+    position: absolute;
+    left: 10px;
+    z-index: 9;
+}
