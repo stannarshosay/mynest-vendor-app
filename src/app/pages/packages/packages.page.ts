@@ -26,20 +26,18 @@ export class PackagesPage implements OnInit {
   ) { }
   ngOnInit(): void {
     this.options = {
-      "key": "rzp_test_AH9Z2L7Vuospz9",
-      "amount": "50000",
-      "currency": "INR",
-      "name": "MyNest",
-      "description": "Purchase your membership",
-      "image": "https://mynestonline.com/vendor/assets/images/main-logo.png",
-      "prefill": {
-          "name": localStorage.getItem("vname"),
-          // "email": "gaurav.kumar@example.com",
-          // "contact": "9999999999"
+      key: "rzp_test_AH9Z2L7Vuospz9",
+      amount: "50000",
+      currency: "INR",
+      name: "MyNest",
+      description: "Purchase your membership",
+      image: "https://mynestonline.com/vendor/assets/images/main-logo.png",
+      prefill: {
+        name: localStorage.getItem("vname")
       },
-      "notes": {},
-      "theme": {
-          "color": "#039eba"
+      notes: {},
+      theme: {
+          color: "#039eba"
       }
     };
     this.getVendorDashboardDetails();    
@@ -106,7 +104,7 @@ export class PackagesPage implements OnInit {
   async loadCheckout() {   
     try {
        let data = (await Checkout.open(this.options));
-       this.saveMembership(JSON.parse(data['response']));
+       this.saveMembership(data.response);
     } catch (error) {
       console.log(error['description']);
       this.isProcessing = false;

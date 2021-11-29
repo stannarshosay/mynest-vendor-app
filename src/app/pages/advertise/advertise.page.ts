@@ -38,20 +38,18 @@ export class AdvertisePage implements OnInit {
 
   ngOnInit(): void {
     this.options = {
-      "key": "rzp_test_AH9Z2L7Vuospz9",
-      "amount": "50000",
-      "currency": "INR",
-      "name": "MyNest",
-      "description": "Purchase your slots",
-      "image": "https://mynestonline.com/vendor/assets/images/main-logo.png",     
-      "prefill": {
-          "name": localStorage.getItem("vname")
-          // "email": "gaurav.kumar@example.com",
-          // "contact": "9999999999"
+      key: "rzp_test_AH9Z2L7Vuospz9",
+      amount: "50000",
+      currency: "INR",
+      name: "MyNest",
+      description: "Purchase your slots",
+      image: "https://mynestonline.com/vendor/assets/images/main-logo.png",     
+      prefill: {
+          name: localStorage.getItem("vname")
       },      
-      "theme": {
-          "color": "#039eba"
-       }
+      theme: {
+          color: "#039eba"
+      }
     };
     this.slotsForm = this.fb.group({
       categoryId:['',Validators.required],
@@ -142,7 +140,7 @@ export class AdvertisePage implements OnInit {
   async loadCheckout() {   
     try {
        let data = (await Checkout.open(this.options));
-       this.verifyAndBookSlots(JSON.parse(data['response']));
+       this.verifyAndBookSlots(data.response);
     } catch (error) {
       console.log(error['description']);
       this.isBooking = false;
