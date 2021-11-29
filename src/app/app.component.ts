@@ -29,6 +29,7 @@ export class AppComponent {
   }
   initializeApp() {
     this.platform.ready().then(() => {
+      this.checkColorModes();
       setTimeout(()=>{
         this.getLoginSetStatusSubscription = this.registerLoginService.getLoginSetStatus().subscribe(res =>{
           this.isLoggedIn = res;
@@ -67,6 +68,14 @@ export class AppComponent {
     await Toast.show({
       text: 'Press back again to exit!'
     });
+  }
+  checkColorModes(){
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    this.toggleDarkTheme(prefersDark.matches);
+    prefersDark.addEventListener('change',(mediaQuery) => this.toggleDarkTheme(mediaQuery.matches));
+  }
+  toggleDarkTheme(shouldAdd:boolean){
+    document.body.classList.toggle('dark', shouldAdd);
   }
   ngOnDestroy():void{    
   }
